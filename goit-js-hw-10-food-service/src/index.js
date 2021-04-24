@@ -12,7 +12,6 @@ menuContainer.insertAdjacentHTML("beforeend", menuCards(menu));
   Switch.addEventListener('change',showSwitchTheme);
 
 
-
     // document.getElementById("#theme-switch-toggle").checked = true;
 
 
@@ -38,25 +37,47 @@ function showSwitchTheme (e){
       if (e.target.checked){
       document.body.classList.add('dark-theme');
       document.body.classList.remove('light-theme');
-      localStorage.setItem('theme', Theme.DARK);
-
+          localStorage.setItem('theme', Theme.DARK);
+       
+          
       } else  {
         document.body.classList.add('light-theme');
         document.body.classList.remove('dark-theme');
-        localStorage.setItem('theme', Theme.LIGHT);  
+        localStorage.setItem('theme', Theme.LIGHT);
+          
        
 }
 };
 
 
+
 document.addEventListener("DOMContentLoaded", function() {
           let background = localStorage.getItem('theme');
           if (background) {
-            document.body.className += background;
+            document.body.className = background;
           }
-          Switch.checked = true;
+    
+    let checkbox = document.getElementById("theme-switch-toggle");
+    
+    if (background === Theme.DARK)
+        Switch.checked = true;
+    else
+        localStorage.setItem("theme-switch-toggle", checkbox.checked);
 });
 
+
+
+
+
+
+//   document.addEventListener("DOMContentLoaded",function(){
+//             // let nom = localStorage.getItem('nom');
+//             let prenom = localStorage.getItem('prenom');
+//             if(prenom!==null) {                 
+//                 // Switch.checked = nom;
+//                 Switch.checked = prenom;
+//             }
+//         });
 
 
 // const currentTheme = localStorage.getItem("theme");
